@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <style>
+		h1 {
+			color: green;
+		}
+
+		.multipleSelection {
+			width: 300px;
+			background-color: #BCC2C1;
+		}
+
+		.selectBox {
+			position: relative;
+		}
+
+		.selectBox select {
+			width: 100%;
+			font-weight: bold;
+		}
+
+		.overSelect {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+
+		#checkBoxes {
+			display: none;
+			border: 1px #8DF5E4 solid;
+		}
+
+		#checkBoxes label {
+			display: block;
+		}
+
+		#checkBoxes label:hover {
+			background-color: #4F615E;
+		}
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+<!--<div class="content-wrapper">-->
+<!--    {% if messages %}-->
+<!--    {% for message in messages %}-->
+<!--    <div class="alert alert-warning alert-dismissible in" role="alert">-->
+<!--        {{ message }}-->
+<!--        <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+<!--            <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--    </div>-->
+<!--    {% endfor %}-->
+<!--    {% endif %}-->
+<!--</div>-->
+<form method="post" id="personForm" data-cities-url="{% url 'src:ajax_load_publications' %}" novalidate>
+    {% csrf_token %}
+    <!--    <table>-->
+    <!--        {{ form }}-->
+    <!--    </table>-->
+    <!--    <div>-->
+    <!--        <label>Category: {{form.category}}</label>-->
+    <!--    </div>-->
+    <!--    <div>-->
+    <!--        <lable>City: {{form.city}}</lable>-->
+    <!--    </div>-->
+    <!--        <div>-->
+    <!--            <label>Publication: {{form.publication}}</label>-->
+    <!--        </div>-->
+    <!--    <div>-->
+    <!--        <label>Ad: {{form.ad}}</label>-->
+    <!--    </div>-->
+    <!--    <button type="submit">Search</button>-->
+
+    <div class="multipleSelection">
+        <div class="selectBox"
+             onclick="showCheckboxes()">
+            <select>
+                <option>Select options</option>
+            </select>
+            <div class="overSelect"></div>
+        </div>
+
+        <div id="checkBoxes">
+            {% for city in cities %}
+            <label for="city">
+                <input type="checkbox" class="id_city" value="{{city.id}}"/>{{city.city_name}}
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+    <div>
+        <label>Publication: {{form.publication}}</label>
+    </div>
+    <div>
+        <label>AdType: {{form.ad}}</label>
+    </div>
+</form>
+<script>
+		var show = true;
+
+		function showCheckboxes() {
+			var checkboxes =
+				document.getElementById("checkBoxes");
+
+
+			if (show) {
+				checkboxes.style.display = "block";
+				show = false;
+			} else {
+				checkboxes.style.display = "none";
+				show = true;
+			}
+		}
+
+
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+
+  $(".id_city").change(function () {
+    var url = $("#personForm").attr("data-cities-url");
+    var cityId = $(this).val();
+    console.log("City ID List",localStorage.getItem("cityIdList"))
+    if(localStorage.getItem("cityIdList") == null){
+        var cityIdList = []
+        cityIdList.push(cityId)
+        console.log("City ID List",cityIdList)
+        localStorage.setItem("cityIdList",JSON.stringify(cityIdList))
+    }
+    else{
+        var temp = JSON.parse(localStorage.getItem("cityIdList"))
+        console.log("Temp",temp)
+        if(!temp.includes(cityId)){
+            temp.push(cityId)
+        }
+        else{
+            const index = temp.indexOf(cityId);
+            temp.splice(index,1)
+        }
+        localStorage.setItem("cityIdList",JSON.stringify(temp))
+        console.log("Temp value",temp)
+        console.log("Type of Temp",typeof(temp))
+    }
+    $.ajax({
+      url: url,
+      method:'POST',
+      data: {
+        'city': localStorage.getItem("cityIdList")
+      },
+      success: function (data) {
+        $("#id_publication").html(data);
+        console.log('City--------',data)
+      }
+    });
+});
+   $("#id_publication").change(function () {
+    var protocol = window.location.protocol
+    var hostname = window.location.hostname
+    var port = window.location.port
+    var url =  protocol + "//" + hostname + ":" + port + "/ajax/load_adtype" + "/";
+    console.log(url)
+    var publicationId = $(this).val();
+    console.log('Publication Id---->> ',publicationId)
+
+    $.ajax({
+      url: url,
+      data: {
+        'publication': publicationId,
+      },
+      success: function (data) {
+      console.log('inside publicationId success')
+        $("#id_ad").html(data);
+        console.log('data from city ajax call---->>> ',data)
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

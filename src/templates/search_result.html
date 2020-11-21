@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<div class="content-wrapper">-->
+<!--    {% if messages %}-->
+<!--    {% for message in messages %}-->
+<!--    <div class="alert alert-warning alert-dismissible fade in" role="alert">-->
+<!--        {{ message }}-->
+<!--        <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+<!--            <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--    </div>-->
+<!--    {% endfor %}-->
+<!--    {% endif %}-->
+<!--</div>-->
+
+<div>
+    <h1>Search result</h1>
+    {% for result in search %}
+    <h1>{{result.sample_ad_text}}</h1>
+    {% endfor %}
+    <!--<h4>Category: {{category}}</h4>-->
+    <!--<h4>City: {{city}}</h4>-->
+    <!--<h4>Publication: {{publication}}</h4>-->
+    <!--<h4>Ad: {{ad}}</h4>-->
+</div>
+</body>
+</html>

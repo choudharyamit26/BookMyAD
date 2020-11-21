@@ -1,0 +1,658 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+    <link href="{% static 'images/favicon.png' %}" rel="icon"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"
+          id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title></title>
+
+    <!-- Web Fonts
+    ============================================= -->
+
+    <!-- Stylesheet
+    ============================================= -->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}"/>
+    <!--
+    <link rel="stylesheet" type="text/css" href="vendor/font-awesome/css/all.min.css" />-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/owl.carousel/assets/owl.theme.default.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}"/>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800' />
+
+</head>
+
+<body>
+<!-- Preloader -->
+<!--<div id="preloader"><div data-loader="dual-ring"></div></div>&lt;!&ndash; Preloader End &ndash;&gt;-->
+
+<!-- Document Wrapper
+============================================= -->
+
+<div class="feedback feedback-toggle rotate" style="width: 170px;margin-left: -20px;"><small>Request
+    Callback</small>
+</div>
+<div class="feedback feedback-form-wrapper">
+    <form id="feedback-form" class="form-horizontal" method="post">
+        <legend class="text-center">Interested? provide your contact details below</legend>
+        <div class="form-group">
+            <label class="sr-only">Your Name</label>
+            <input id="username" name="username" class="form-control" autocomplete="off" placeholder="Your Name *"
+                   required="required" type="text">
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Email ID</label>
+            <input name="emailquery" id="emailquery" class="form-control" autocomplete="off"
+                   placeholder="Your Email *" required="required" type="email">
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Phone Number</label>
+            <input name="phoneno" id="phoneno" class="form-control" autocomplete="off" placeholder="Phone Number *"
+                   required="required" type="number">
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Issue</label>
+            <textarea id="issue" name="issue" class="form-control" rows="3" autocomplete="off"
+                      placeholder="Write Your Issue *" required="required"></textarea>
+        </div>
+        <div class="form-group">
+            <label class="control-label">I need service on</label>
+            <input class="form-control" name="dateOfReg" id="dateOfReg" autocomplete="off" placeholder="02/03/2014"
+                   required="required" min="2015-05-1" type="text">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" name="sendissuedetails" id="sendissuedetails" class="btn btn-default">Send Details
+            </button>
+        </div>
+    </form>
+</div>
+
+<div id="main-wrapper">
+
+    <!-- Header
+============================================= -->
+    <header id="header">
+        <div class="container">
+            <div class="header-row">
+                <div class="header-column justify-content-start">
+
+                    <!-- Logo
+                ============================================= -->
+                    <div class="logo">
+                        <a href="index.html" title="Quickai - HTML Template"><img
+                                src="{% static 'images\make-logo\logo.png' %}" alt="Quickai" width="127"/></a>
+                    </div><!-- Logo end -->
+
+                </div>
+
+                <div class="header-column justify-content-end">
+
+                    <!-- Primary Navigation
+                ============================================= -->
+                    <nav class="primary-menu navbar navbar-expand-lg">
+                        <div id="header-nav" class="collapse navbar-collapse">
+                            <ul class="navbar-nav">
+                                <li class="dropdown"><a class="dropdown-toggle" href="{% url 'src:ad' %}">Home</a>
+
+
+                                </li>
+                                <li class="dropdown"><a class="dropdown-toggle" href="#">Track My Ad</a>
+
+                                </li>
+                                <li class="dropdown dropdown-mega"><a class="dropdown-toggle" href="#">How To
+                                    Booking</a>
+
+                                </li>
+                                <li class="dropdown dropdown-mega"><a class="dropdown-toggle" href="bookads.html">
+                                    <i class="fa fa-shopping-cart"><span id="count">&nbsp;&nbsp;0</span></i></a>
+                                </li>
+
+                                <li class="dropdown active"><a class="dropdown-toggle" href="#">Pages</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="about-us.html">About Us</a></li>
+
+                                        <li><a class="dropdown-item" href="profile.html">My Profile</a></li>
+                                        <li><a class="dropdown-item" href="support.html">Support</a></li>
+                                        <li><a class="dropdown-item" href="contact-us.html">Contact Us</a></li>
+                                    </ul>
+                                </li>
+                                <li class="login-signup ml-lg-2"><a class="pl-lg-4 pr-0" data-toggle="modal"
+                                                                    data-target="#login-signup" href="#"
+                                                                    title="Login / Sign up">Login / Sign up
+                                    <span class="d-none d-lg-inline-block"><i class="fa fa-user"></i></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav><!-- Primary Navigation end -->
+
+                </div>
+
+                <!-- Collapse Button
+            ============================================= -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-nav">
+                    <span></span> <span></span> <span></span></button>
+            </div>
+        </div>
+    </header>
+    <!-- Header end -->
+
+    <!--------How to Book start------->
+    <section class="section21">
+        <div class="container">
+            <div class="row">
+                <div class="col-sx-8">
+                    <div class="select-package">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="step1">
+                                    <p>Select package<br><span>(Marriage Bureau)</span></p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="step2">
+                                    <p>Compose Ad<br><span>(Using sample ads)</span></p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="step3">
+                                    <p>Make Payment<br><span>(Online or Ofline Options)</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sx-3">
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <form method="post">
+                {% csrf_token %}
+                <div class="col-xs-3 button-select">
+                    <p class="text-center">YOU HAVE SELECTED</p>
+                    <select class="secected-selectbox minimal" id="id_category" name="category">
+                        <option value="{{category.id}}" selected>{{category}}</option>
+                        {% for object in categories %}
+                        <option value="{{object.id}}">{{object.name}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <select class="form-control select2" id="id_city" multiple="multiple" name="city">
+                        {% for city in selected_cities %}
+                        <option value="{{city.id}}" selected>{{city.city_name}}</option>
+                        {% endfor %}
+                        {% for city in total_cities %}
+                        <h1>{{city}}</h1>
+                        <option value="{{city.id}}">{{city.city_name}}</option>
+                        {% endfor %}
+                    </select> <br>
+                    <select class="form-control select2" id="id_publication" multiple="multiple" name="publication">
+                        {% for publication in selected_publication %}
+                        <option value="{{publication.id}}" selected>{{publication.publication_name}}</option>
+                        {% endfor %}
+                        {% for publication in publicationList %}
+                            <h1>{{publication.publication_name}}</h1>
+                        <option value="{{publication.id}}">{{publication.publication_name}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <select class="secected-selectbox minimal" id="id_ad" name="ad">
+                        <option value="{{selected_ad.id}}" selected>{{selected_ad}}</option>
+                        {% for ad in remaining_ad %}
+                        <option value="{{ad.id}}">{{ad.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    <button id="button24" type="submit">MODIFY SEARCH</button>
+                    <!--                <div class="col-sm-2">-->
+                    <!--                    <button type="submit" id="button24" class="col-sm-2">Search</button>-->
+                </div>
+            </form>
+        </div>
+
+        {% for object in search %}
+        <div class="col-lg-9 text-center" id="section22">
+            <div class="row">
+                <div class="col-sm-4 card" id="bc1">
+                    <img src="{{ object.publication.publication_img.url }}" class="img-fluid">
+                    <hr>
+                    <h2>Shagun Package :TOI (Delhi NCR, Uttrakhand, Chandigarh, Rajasthan, U.P, M.P) + NBT (Delhi
+                        NCR + Lucknow)</h2>
+                    <p>{{object.sample_ad_text}}
+                    </p>
+                    <strong> {{object.price}} </strong><br>
+                    <span>For first 5 Lines</span><br>
+                    <div class="row" id="btn-section">
+                        <div class="col-sm-6">
+                            <a href="{% url 'src:package-detail' object.id %}" id="bt3"
+                               class="btn btn-primary">Package
+                                Details</a>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <!-- <button id="bt4" value="{{object.id}}" class="btn btn-primary cart" onclick="cartButton();"> -->
+                            <button id="{{object.id}}" value="{{object.id}}" class="btn btn-primary cart" onclick="cartManager({{object.id}});">
+                                Add to cart
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<!-- Footer
+============================================= -->
+<section id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="eq5">
+                <h6>Company</h6>
+                <ul>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Our Blog</a></li>
+                    <li><a href="#">Press/Media</a></li>
+                    <li><a href="#">Career</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                    <li><a href="#">Site Map</a></li>
+                    <li><a href="#">Contact us</a></li>
+                </ul>
+            </div>
+            <div class="eq5">
+                <h6>Need help</h6>
+                <ul>
+                    <li><a href="#">How to Book</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cancellation &amp; Refund </a></li>
+                    <li><a href="#">Feedback / Complaints</a></li>
+                    <li><a href="#">E-papers</a></li>
+                    <li><a href="#">Track My Ad</a></li>
+                </ul>
+            </div>
+            <div class="clearfix hide-md"></div>
+            <div class="eq5">
+                <h6>Payment Method</h6>
+                <ul>
+                    <li><a href="#">Quick Payment Link</a></li>
+                    <li><a href="#">Payment Terms</a></li>
+                    <li><a href="#">Net banking</a></li>
+                    <li><a href="#">Debit/Credit Card</a></li>
+                    <li><a href="#">NEFT/RTGS</a></li>
+                    <li><a href="#">Bank Deposit/Cheque/DD</a></li>
+                    <br>
+                    <li><a href="/refer-friend.php"><img src="{% static 'images\make-logo\refer-image.png' %}"></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="eq5 ft_vid">
+                <h6>Video introduction</h6>
+                <iframe src="https://www.youtube.com/embed/EQ3DhQlgF50" frameborder="0" allowfullscreen=""></iframe>
+                <ul>
+                    <li style="display:inline-block; vertical-align:top"><a href="https://www.facebook.com/bookmyad"
+                                                                            target="_blank"><img
+                            src="{% static 'images\make-logo\facebook.jpg' %}"></a></li>
+                    <li style="display:inline-block; vertical-align:top"><a
+                            href="https://plus.google.com/+BookmyadOfficial/posts" target="_blank"><img
+                            src="{% static 'images\make-logo\gmail.jpg' %}"></a></li>
+                    <li style="display:inline-block; vertical-align:top"><a href="https://twitter.com/bookmy_ad"
+                                                                            target="_blank"><img
+                            src="{% static 'images\make-logo\Twitter.jpg' %}"></a></li>
+                    <li style="display:inline-block; vertical-align:top"><a
+                            href="https://www.youtube.com/channel/UCHiRvwYVChyRb8isRQClejA" target="_blank"><img
+                            src="{% static 'images\make-logo\Youtube.jpg' %}"></a></li>
+                    <li style="display:inline-block; vertical-align:top"><a
+                            href="https://www.instagram.com/bookmyad/" target="_blank"><img
+                            src="{% static 'images\make-logo\Instagram.jpg' %}"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+</footer>
+</section>
+<footer id="footer" class="mt-0">
+    <section class="hero-wrap bg-secondary shadow-md pt-4 pb-3">
+        <div class="hero-bg" style="background-image:url('./images/make-logo/image-5.jpg');"></div>
+        <div class="hero-content">
+            <div class="container">
+                <div class="row text-light">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="featured-box style-1">
+                            <div class="featured-box-icon text-light"><i class="fa fa-lock"></i></div>
+                            <h4 class="text-light">100% Secure</h4>
+                            <p>Moving your card details to a much more secured place.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="featured-box style-1">
+                            <div class="featured-box-icon text-light"><i class="fa fa-thumbs-up"></i></div>
+                            <h4 class="text-light">Trust pay</h4>
+                            <p>100% Payment Protection. Easy Return Policy.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="featured-box style-1">
+                            <div class="featured-box-icon text-light"><i class="fa fa-bullhorn"></i></div>
+                            <h4 class="text-light">Refer & Earn</h4>
+                            <p>Invite a friend to sign up and earn up to $100.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="featured-box style-1">
+                            <div class="featured-box-icon text-light"><i class="fa fa-life-ring"></i></div>
+                            <h4 class="text-light">24X7 Support</h4>
+                            <p>We're here to help. Have a query and need <a href="#">help</a> ?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Document Wrapper end -->
+
+    <!-- Back to Top
+============================================= -->
+    <a id="back-to-top" data-toggle="tooltip" title="Back to Top" href="javascript:void(0)"><i
+            class="fa fa-chevron-up"></i></a>
+
+    <!-- Modal Dialog - Login/Signup
+============================================= -->
+    <div id="login-signup" class="modal fade" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content p-sm-3">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item"><a id="login-tab" class="nav-link active text-4" data-toggle="tab"
+                                                href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
+                        </li>
+                        <li class="nav-item"><a id="signup-tab" class="nav-link text-4" data-toggle="tab"
+                                                href="#signup" role="tab" aria-controls="signup" aria-selected="false">Sign
+                            Up</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-4">
+                        <div class="tab-pane fade show active" id="login" role="tabpanel"
+                             aria-labelledby="login-tab">
+                            <form id="loginForm" method="post">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="loginMobile" required
+                                           placeholder="Mobile or Email ID">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="loginPassword" required
+                                           placeholder="Password">
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-sm">
+                                        <div class="form-check custom-control custom-checkbox">
+                                            <input id="remember-me" name="remember" class="custom-control-input"
+                                                   type="checkbox">
+                                            <label class="custom-control-label" for="remember-me">Remember
+                                                Me</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm text-right"><a class="justify-content-end" href="#">Forgot
+                                        Password ?</a></div>
+                                </div>
+                                <button class="btn btn-primary btn-block" type="submit">Login</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
+                            <form id="signupForm" method="post">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" data-bv-field="number" id="signupEmail"
+                                           required placeholder="Email ID">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="signupMobile" required
+                                           placeholder="Mobile Number">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="signuploginPassword" required
+                                           placeholder="Password">
+                                </div>
+                                <button class="btn btn-primary btn-block" type="submit">Signup</button>
+                            </form>
+                        </div>
+                        <div class="d-flex align-items-center my-4">
+                            <hr class="flex-grow-1">
+                            <span class="mx-2">OR</span>
+                            <hr class="flex-grow-1">
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <button type="button" class="btn btn-block btn-outline-primary">Login with Facebook
+                                </button>
+                            </div>
+                            <div class="col-12">
+                                <button type="button" class="btn btn-block btn-outline-danger">Login with Google
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- Modal Dialog - Login/Signup end -->
+</footer>
+<!-- Script -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-spinner/bootstrap-spinner.js' %}"></script>
+<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+<script>
+        $(function () {
+            'use strict';
+            // Hotels Check In Date
+            $('#hotelsCheckIn').daterangepicker({
+                singleDatePicker: true,
+                minDate: moment(),
+                autoUpdateInput: false,
+            }, function (chosen_date) {
+                $('#hotelsCheckIn').val(chosen_date.format('MM-DD-YYYY'));
+            });
+
+            // Hotels Check Out Date
+            $('#hotelsCheckOut').daterangepicker({
+                singleDatePicker: true,
+                minDate: moment(),
+                autoUpdateInput: false,
+            }, function (chosen_date) {
+                $('#hotelsCheckOut').val(chosen_date.format('MM-DD-YYYY'));
+            });
+
+            // Flight Depart Date
+            $('#flightDepart').daterangepicker({
+                singleDatePicker: true,
+                minDate: moment(),
+                autoUpdateInput: false,
+            }, function (chosen_date) {
+                $('#flightDepart').val(chosen_date.format('MM-DD-YYYY'));
+            });
+
+            // Flight Return Date
+            $('#flightReturn').daterangepicker({
+                singleDatePicker: true,
+                minDate: moment(),
+                autoUpdateInput: false,
+            }, function (chosen_date) {
+                $('#flightReturn').val(chosen_date.format('MM-DD-YYYY'));
+            });
+
+            // Train Depart Date
+            $('#trainDepart').daterangepicker({
+                singleDatePicker: true,
+                minDate: moment(),
+                autoUpdateInput: false,
+            }, function (chosen_date) {
+                $('#trainDepart').val(chosen_date.format('MM-DD-YYYY'));
+            });
+
+            // Bus Depart Date
+            $('#busDepart').daterangepicker({
+                singleDatePicker: true,
+                minDate: moment(),
+                autoUpdateInput: false,
+            }, function (chosen_date) {
+                $('#busDepart').val(chosen_date.format('MM-DD-YYYY'));
+            });
+        });
+
+
+
+
+
+
+</script>
+<script type="text/javascript">
+        // This is the Feedback toggle functionality it slides the feedback form in and out
+        // of view when the user clicks the div with the class .feedback-toggle
+        $('.feedback-toggle').click(function () {
+            var left = parseFloat($('.feedback')[0].style.left.match(/[0-9]+/g)) || 50,
+                tgl = '+=280';
+            (left > 50) ? tgl = '-=280' : tgl = '+=280';
+            $('.feedback').animate({ left: tgl }, 500);
+        });
+
+
+        // This is the form submission AJAX code which also
+        // hides the feednack form.
+
+        $("#feedback-form .btn").click(function () {
+            var url = "path/to/your/script.php", // the script where you handle the form input.
+                data = $("#feedback-form").serialize(),
+                isValid = validate("#feedback-form");
+            if (isValid) {
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data, // serializes the form's elements.
+                    success: function (data) {
+                        $('.feedback').find('.alert-error').fadeIn('fast');
+                        $('.feedback').animate({ left: '-=350' }, 500);
+                    },
+                    error: function (data) {
+                        $('.feedback').find('.alert-block').fadeIn('fast');
+                        return false;
+                    }
+                });
+            }
+            return false; // avoid to execute the actual submit of the form.
+        });
+
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+<script>
+    function cartButton() {
+        console.log('inside cart button')
+        var btn = document.getElementById("bt4");
+        btn.innerHTML = 'Remove from cart';
+
+    };
+
+
+    function cartManager(id){
+        if(sessionStorage.getItem("cartItemList")==null){
+            console.log("Inside Null case fresh list")
+            var temp = []
+            temp.push(id)
+            document.getElementById(id).innerHTML = "Remove from cart"
+            sessionStorage.setItem("cartItemList",JSON.stringify(temp))
+            // var cart_len = sessionStorage.getItem("cartItemList")
+            // document.querySelector("#count").innerHTML = cart_len.length;
+            // console.log("Cart item count",cart_len.length)
+            // console.log("Full cart list",cart_len)
+        }
+        else{
+            var temp_list = JSON.parse(sessionStorage.getItem("cartItemList"))
+            console.log("Temp Item List",temp_list)
+            if(temp_list.includes(id)){
+                console.log("Inside remove existing element case")
+                const index = temp_list.indexOf(id);
+                temp_list.splice(index,1)
+                document.getElementById(id).innerHTML = "Add to cart"
+                sessionStorage.setItem("cartItemList",JSON.stringify(temp_list))
+            }
+            else{
+                console.log("append new element case")
+                temp_list.push(id)
+                sessionStorage.setItem("cartItemList",JSON.stringify(temp_list))
+                document.getElementById(id).innerHTML = "Remove from cart"
+
+            }
+        }
+        var cart_len = JSON.parse(sessionStorage.getItem("cartItemList"))
+        document.querySelector("#count").innerHTML = cart_len.length;
+        console.log("Cart item count",cart_len.length)
+        console.log("Full cart list",cart_len)
+
+    }
+</script>
+
+
+<script>
+        $("#bt4").click(function () {
+            var object_id = $("#bt4").val();
+            // console.log('Id ', object_id)
+            var protocol = window.location.protocol
+            var hostname = window.location.hostname
+            var port = window.location.port
+            var cart = []
+            console.log(cart)
+            if (!cart.includes(object_id)) {
+                cart.push(object_id)
+                console.log('inside if condition')
+                // console.log('>>>>>>>>>', cart.includes(object_id))
+                // console.log(cart)
+                // console.log(cart.length)
+                sessionStorage.setItem("item", cart)
+            }
+            else {
+                var temp1 = JSON.parse(sessionStorage.getItem("item"))
+                console.log("Temp", temp1)
+                const temp = cart.indexOf(object_id)
+                console.log('inside else condition')
+                console.log('>>>>>>>>>', cart.includes(object_id))
+                console.log(temp1)
+                cart.splice(temp1, 1)
+            }
+            sessionStorage.setItem("item", cart)
+            document.querySelector("#count").innerHTML = cart.length;
+        });
+
+
+
+</script>
+<script>
+        $('.select2').select2();
+
+</script>
+
+<script>
+</script>
+<script src="{% static 'js/theme.js' %}"></script>
+
+</body>
+
+</html>

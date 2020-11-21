@@ -1,0 +1,983 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/select2.min.css' %}">
+    <link href="{% static 'images/favicon.png' %}" rel="icon"/>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title></title>
+
+    <!-- Web Fonts
+    ============================================= -->
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900'
+          type='text/css'>
+
+    <!-- Stylesheet
+    ============================================= -->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}"/>
+    <!--
+    <link rel="stylesheet" type="text/css" href="vendor/font-awesome/css/all.min.css" />-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/owl.carousel/assets/owl.theme.default.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}"/>
+
+</head>
+<body onload="clearStorage()">
+
+<!-- Preloader -->
+<!--<div id="preloader"><div data-loader="dual-ring"></div></div>&lt;!&ndash; Preloader End &ndash;&gt;-->
+
+<!-- Document Wrapper   
+============================================= -->
+
+
+<div class="feedback feedback-toggle rotate" style="width: 170px;margin-left: -20px;"><small>Request Callback</small>
+</div>
+<div class="feedback feedback-form-wrapper">
+    <form id="feedback-form" class="form-horizontal" method="post">
+        <legend class="text-center">Interested? provide your contact details below</legend>
+
+        <div class="form-group">
+            <label class="sr-only">Your Name</label>
+            <input id="username" name="username" class="form-control" autocomplete="off" placeholder="Your Name *"
+                   required="required" type="text">
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Email ID</label>
+            <input name="emailquery" id="emailquery" class="form-control" autocomplete="off" placeholder="Your Email *"
+                   required="required" type="email">
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Phone Number</label>
+            <input name="phoneno" id="phoneno" class="form-control" autocomplete="off" placeholder="Phone Number *"
+                   required="required" type="number">
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Issue</label>
+            <textarea id="issue" name="issue" class="form-control" rows="3" autocomplete="off"
+                      placeholder="Write Your Issue *" required="required"></textarea>
+        </div>
+        <div class="form-group">
+            <label class="control-label">I need service on</label>
+            <input class="form-control" name="dateOfReg" id="dateOfReg" autocomplete="off" placeholder="02/03/2014"
+                   required="required" min="2015-05-1" type="text">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" name="sendissuedetails" id="sendissuedetails" class="btn btn-default">Send Details
+            </button>
+        </div>
+    </form>
+</div>
+
+<div id="main-wrapper">
+
+    <!-- Header
+    ============================================= -->
+    <header id="header">
+        <div class="container">
+            <div class="header-row">
+                <div class="header-column justify-content-start">
+
+                    <!-- Logo
+                    ============================================= -->
+                    <div class="logo">
+                        <a href="index.html"><img src="{% static 'images\make-logo\logo.png' %}" alt="Quickai"
+                                                  width="127"/></a>
+                    </div><!-- Logo end -->
+
+                </div>
+
+
+                <div class="header-column justify-content-end">
+
+                    <!-- Primary Navigation
+                    ============================================= -->
+                    <nav class="primary-menu navbar navbar-expand-lg hidden-xs">
+                        <div id="header-nav" class="collapse navbar-collapse">
+                            <ul class="navbar-nav">
+                                <li class="dropdown"><a class="dropdown-toggle" href="{% url 'src:ad' %}">Home</a>
+
+
+                                </li>
+                                <li class="dropdown"><a class="dropdown-toggle" href="#">Track My Ad</a>
+
+                                </li>
+                                <li class="dropdown dropdown-mega"><a class="dropdown-toggle" href="howtobook.html">How
+                                    To Booking</a>
+
+                                </li>
+                                <li class="dropdown dropdown-mega"><a class="dropdown-toggle" href="bookads.html">Category</a>
+
+                                </li>
+
+                                <li class="dropdown active"><a class="dropdown-toggle" href="#">Pages</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="about-us.html">About Us</a></li>
+
+                                        <li><a class="dropdown-item" href="profile.html">TOP NEWSPAPERS</a></li>
+                                        <li><a class="dropdown-item" href="support.html">Support</a></li>
+                                        <li><a class="dropdown-item" href="contact-us.html">Contact Us</a></li>
+                                    </ul>
+                                </li>
+                                <li class="login-signup ml-lg-2"><a class="pl-lg-4 pr-0" data-toggle="modal"
+                                                                    data-target="#login-signup" href="#"
+                                                                    title="Login / Sign up">Login / Sign up <span
+                                        class="d-none d-lg-inline-block"><i class="fa fa-user"></i></span></a></li>
+                                <li>
+                                    <div id="mySidenav" class="sidenav">
+                                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                                        <div id="co3">
+                                            <a href="#">ABOUT US PAGE</a>
+                                            <hr>
+                                            <a href="#">TESTIMONIAL</a>
+                                            <hr>
+                                            <a href="#">CARRIER</a>
+                                            <hr>
+                                            <a href="#">QUICK PAYMENT</a>
+                                            <hr>
+                                            <a href="#">TOP NEWSPAPERS</a>
+                                            <hr>
+                                            <a href="#">TOP CATEGORIES</a>
+                                            <hr>
+                                            <a href="#">TOP CITIES TO ADVERTISE</a>
+                                            <hr>
+                                            <a href="#">OUR CLIENTS</a>
+                                            <hr>
+                                            <a href="#">TESTIMONIALS</a>
+                                            <hr>
+                                            <a href="#">PRESS/MEDIA</a>
+                                            <hr>
+                                            <a href="#">CAREER</a>
+                                            <hr>
+                                            <a href="#">OUR BLOG</a>
+                                            <hr>
+                                            <a href="#">QUICK PAYMENT LINK</a>
+                                            <hr>
+                                            <a href="#">CONTACT US</a>
+                                            <hr>
+                                        </div>
+                                    </div>
+
+                                    <span id="toggal-btn" onclick="openNav()">&#9776;</span></li>
+                            </ul>
+                        </div>
+
+                    </nav><!-- Primary Navigation end -->
+
+                </div>
+
+                <!-- Collapse Button
+                ============================================= -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-nav">
+                    <span></span> <span></span> <span></span></button>
+            </div>
+        </div>
+    </header>
+    <!-- Header end -->
+
+    <!-- Content
+    ============================================= -->
+    <div id="content">
+        <div class="content-wrapper">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible in" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="hero-wrap py-2 py-md-3 py-lg-5">
+            <div class="hero-mask opacity-3 bg-dark"></div>
+            <div class="hero-bg" style="background-image:url('images/make-logo/main_banner.jpg');"></div>
+            <div class="hero-content py-3 py-lg-5 my-3 my-md-5">
+                <div class="container" id="bg-dark1">
+                    <div class="row">
+                        <div class="col-sm-2 text-center" style="width: 20%;">
+                            <img id="img" class="active1" src="{% static 'images\make-logo\newspaper.png' %}"
+                                 class="img-fluid"><br>
+                            <span style="color: white;">News paper</span>
+                        </div>
+                        <div class="col-sm-2 text-center" style="width: 20%;">
+                            <img id="img" class="active2" src="{% static 'images\make-logo\radiologo1.png' %}"
+                                 class="img-fluid"><br>
+                            <span style="color: white;">Radio</span>
+                        </div>
+                        <div class="col-sm-2 text-center" style="width: 20%;">
+                            <img id="img" class="active2" src="{% static 'images\make-logo\tv.png' %}"
+                                 class="img-fluid"><br>
+                            <span style="color: white;">Television</span>
+                        </div>
+                        <div class="col-sm-2 text-center" style="width: 20%;">
+                            <img id="img" class="active2" src="{% static 'images\make-logo\degital.png' %}"
+                                 class="img-fluid"><br>
+                            <span style="color: white;">Digital Media</span>
+                        </div>
+                        <div class="col-sm-2 text-center" style="width: 20%;">
+                            <img id="img" class="active2" src="{% static 'images\make-logo\outdoor.png' %}"
+                                 class="img-fluid"><br>
+                            <span style="color: white;">Outdoor</span>
+                        </div>
+
+
+                        <form class="form-control" method="post" id="personForm"
+                              data-cities-url="{% url 'src:ajax_load_publications' %}" novalidate>
+                            {% csrf_token %}
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <select class="form-control" id="id_category" name="category" required>
+                                            <!--                    {{form.category}}-->
+                                            <option selected>-Select Category-</option>
+                                            {% for category in categories %}
+                                            <option value="{{category.id}}">{{category.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <select class="form-control id_city select2" multiple="multiple" name="city">
+                                            <option selected>-Select City-</option>
+                                            {% for city in cities %}
+                                            <option value="{{city.id}}">{{city.city_name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <select class="form-control  select2" id="id_publication"  multiple="multiple" name="publication">
+                                            <option selected>-Select Publication-</option>
+                                            <!--                                        <div class="form-control">-->
+
+                                            <!--                                        <option>{{form.publication}}</option>-->
+                                            <!--                                                                                        {{form.publication}}-->
+                                            <option value="{{publication.id}}">{{publication.publication_name}}</option>
+                                            <!--                                                                                    </div>-->
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" id="id_ad" name="ad">
+                                            <option selected>-Select Ad Type-</option>
+                                            <option value="{{ad.id}}">{{ad.name}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <button type="submit" id="bt1" class="form-control">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+                        <!-- Search Flight -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Welcome Text
+============================================= -->
+<section class="section bg-light-3">
+    <div class="container">
+        <h2 class="text-9 font-weight-400 text-center">Why MakeMyAd.in?</h2>
+        <div class="row">
+            <div class="col-sm-3 make2 text-center">
+                <img src="{% static 'images\make-logo\cercil1.png' %}" class="img-fluid">
+                <h4>Authorised Advertising Agency</h4>
+                <p>We enjoy full Authorization.</p>
+
+            </div>
+            <div class="col-sm-3 make2 text-center">
+                <img src="{% static 'images\make-logo\cercil2.png' %}" class="img-fluid">
+                <h4>Strong Service Backup</h4>
+                <p>Our Executives are there to assist you</p>
+            </div>
+            <div class="col-sm-3 make2 text-center">
+                <img src="{% static  'images\make-logo\cercil3.png' %}" class="img-fluid">
+                <h4>Lowest Media Rates</h4>
+                <p>Enjoy the Lowest Advertising Rates</p>
+            </div>
+            <div class="col-sm-3 make2 text-center">
+                <img src="{% static 'images\make-logo\cercil4.png' %}" class="img-fluid">
+                <h4>Online Ad Booking</h4>
+                <p>Hassle-free online self serving ad</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Welcome Text end -->
+
+<!-- Banner--->
+<div class="container min-width">
+    <h3 class="text-center" style="padding-top: 25px;">— Leading Newspapers to Advertise with in India —</h3>
+    <div class="row">
+        <div class="col-md-3 col-sm-3 col-xs-6 padd-r">
+            <div class="news-papers">
+                <figure class="wpf-demo-3">
+                    <a href="publication.html" alt="Hindustan Times" title="Hindustan Times"><img
+                            src="https://www.bookmyad.com//media/upload/15f077855311477481780Hindustan Times.jpg"
+                            class="img-responsive"></a>
+                    <figcaption class="view-caption">
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6 padd-r">
+            <div class="news-papers">
+                <figure class="wpf-demo-3">
+                    <a href="publication.html" alt="The Times of India" title="The Times of India"><img
+                            src="https://www.bookmyad.com//media/upload/1477553019The-Times-of-India.jpg" class="card"
+                            class="img-responsive"></a>
+                    <figcaption class="view-caption">
+
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6 padd-r">
+            <div class="news-papers">
+                <figure class="wpf-demo-3">
+                    <a href="publication.html" alt="Dainik Jagran" title="Dainik Jagran"><img
+                            src="https://www.bookmyad.com//media/upload/1477552459Dainik-Jagran.jpg" class="card"
+                            class="img-responsive"></a>
+                    <figcaption class="view-caption">
+
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6 padd-r">
+            <div class="news-papers">
+                <figure class="wpf-demo-3">
+                    <a href="publication.html" alt="Amar Ujala" title="Amar Ujala"><img
+                            src="https://www.bookmyad.com//media/upload/1477550198Amar Ujala.jpg" class="card"
+                            class="img-responsive"></a>
+                    <figcaption class="view-caption">
+
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6 padd-r">
+            <div class="news-papers">
+                <figure class="wpf-demo-3">
+                    <a href="publication.html" alt="Hindustan Hindi" title="Hindustan Hindi"><img
+                            src="https://www.bookmyad.com//media/upload/1477489210Hindustan.jpg" class="card"
+                            class="img-responsive"></a>
+                    <figcaption class="view-caption">
+
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6 padd-r">
+            <div class="news-papers">
+                <figure class="wpf-demo-3">
+                    <a href="publication.html" alt="Malayala Manorama" title="Malayala Manorama"><img
+                            src="{% static 'images\make-logo\d1.jpg' %}" class="card" class="img-responsive"></a>
+                    <figcaption class="view-caption">
+
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6 padd-r">
+            <div class="news-papers">
+                <figure class="wpf-demo-3">
+                    <a href="publication.html" alt="Punjab Kesari(Delhi Group)" title="Punjab Kesari(Delhi Group)"><img
+                            src="https://www.bookmyad.com//media/upload/1490093210Punjab Kesari.jpg" class="card"
+                            class="img-responsive"></a>
+                    <figcaption class="view-caption">
+
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6 padd-r">
+            <div class="news-papers">
+                <figure class="wpf-demo-3">
+                    <a href="publication.html" alt="The Hindu" title="The Hindu"><img
+                            src="https://www.bookmyad.com//media/upload/1477553308The-Hindu.jpg" class="card"
+                            class="img-responsive"></a>
+                    <figcaption class="view-caption">
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 newspapers text-center">
+            <a href="allnewspaper.html">
+                <input id="button2" type="button" value="All Newspapers">
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Banner end -->
+<section class="section1 bg-light shadow-md">
+    <div class="container">
+        <h2 class="text-center cat">— Top Categories to Advertise under in India —</h2>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="hovereffect1 card">
+                    <a href="changename.html"> <img class="img-fluid" src="{% static 'images\make-logo\1.jfif' %}"
+                                                    alt=""></a>
+                    <div class="overlay1">
+                        <h2>Matrimonial</h2>
+                        <a class="info1" href="#"><b>Wanted Bride, Wanted Groom, By Cast</b><br><small>Book Wanted
+                            Bride/Groom ads by</small></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6  col-xs-12">
+                <div class="hovereffect1 card">
+                    <a href="changename.html"> <img class="img-fluid" src="{% static 'images\make-logo\2.jfif' %}"
+                                                    alt=""></a>
+                    <div class="overlay1">
+                        <h2>Marriage Bureau</h2>
+                        <a class="info1" href="#"><b>Select For:</b><br><small>Buy or sell your Property,land,<br>premises</small></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="hovereffect1 card">
+                    <a href="changename.html"> <img class="img-fluid" src="{% static 'images\make-logo\3.jfif' %}"
+                                                    alt=""></a>
+                    <div class="overlay1">
+                        <h2>Change of Name</h2>
+                        <a class="info1" href="#"><b>Select For:</b><br><small>Hire employees by advertising in</small></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="hovereffect1 card">
+                    <a href="changename.html"> <img class="img-fluid" src="{% static 'images\make-logo\4.jfif' %}"
+                                                    alt=""></a>
+                    <div class="overlay1">
+                        <h2>Business</h2>
+                        <a class="info1" href="#"><b>Select For:</b><br><small>For offering business proposals
+                            advertise</small></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="padding-top: 30px;">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="hovereffect1 card">
+                    <a href="changename.html"> <img class="img-fluid" src="{% static 'images\make-logo\5.jfif' %}"
+                                                    alt=""></a>
+                    <div class="overlay1">
+                        <h2>Education</h2>
+                        <a class="info1" href="#"><b>Select For:</b><br><small>Book Wanted Bride/Groom ads
+                            by</small></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6  col-xs-12">
+                <div class="hovereffect1 card">
+                    <a href="changename.html"> <img class="img-fluid" src="{% static 'images\make-logo\6.jfif' %}"
+                                                    alt=""></a>
+                    <div class="overlay1">
+                        <h2>Property</h2>
+                        <a class="info1" href="#"><b>Select For:</b><br><small>Buy or sell your Property,land,<br>premises</small></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6  col-xs-12">
+                <div class="hovereffect1 card">
+                    <a href="changename.html"> <img class="img-fluid" src="{% static 'images\make-logo\lost.png' %}"
+                                                    alt=""></a>
+                    <div class="overlay1">
+                        <h2>Lost and Found</h2>
+                        <a class="info1" href="#"><b>Select For:</b><br><small>Hire employees by advertising in</small></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="hovereffect1 card">
+                    <a href="changename.html"> <img class="img-fluid" src="{% static 'images\make-logo\public.png' %}"
+                                                    alt=""></a>
+                    <div class="overlay1">
+                        <h2>Public Notice</h2>
+                        <a class="info1" href="#"><b>Select For:</b><br><small>For offering business proposals
+                            advertise</small></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 newspapers text-center">
+                <a href="bookads.html">
+                    <input id="button2" type="button" value="All Categories">
+                </a>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Popular Routes
+============================================= -->
+<!-- Popular Routes end -->
+<section class="section bg-light-3">
+    <div class="container">
+        <h2 class="text-9 font-weight-400 text-center">MakeMyAd is India's largest Media Advertising Agency</h2>
+        <div class="row">
+            <div class="col-sm-4 make3 text-center">
+                <img src="{% static 'images\make-logo\handsimage.png' %}" class="img-fluid">
+                <h4>Served Over 10,000 + Customers</h4>
+
+
+            </div>
+            <div class="col-sm-8 make3 text-center">
+                <p>Makemyad.in has simplified and given a complete makeover to the whole process of booking ads for
+                    different media platforms. Now there is no need for you to travel all the way to the respective
+                    offices. Nor do you need to write messages manually on forms. Makemyad.in lets you do all this and
+                    more from the comfort of your home, office or even when you’re travelling.</p>
+                <p>Makemyad.in has time and again proven itself to be an excellent platform for booking advertisements
+                    in any national and regional newspapers. You can choose from a variety of publications keeping in
+                    view your target audience, then select the category that suits your classified ad, and pay through a
+                    secure gateway. Advertisements in leading newspapers like The Times of India, Hindustan Times,
+                    Hindu, Amar Ujala, Dainik Jagran, Tribune and Indian express amongst others can be booked with the
+                    help of Makemyad.in</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Refer & Earn end -->
+<div class="section bg-light">
+    <div class="container">
+        <h2 class="text-9 font-weight-500 text-center mb-4">Our Clients</h2>
+
+        <div class="tab-content mt-4" id="myPartnersContent">
+            <div class="tab-pane fade show active" id="operator-one" role="tabpanel" aria-labelledby="operator-one-tab">
+                <div class="brands-grid">
+                    <div class="row">
+                        <div class="col-4 col-sm-3 col-md-2 col-lg text-center"><a href=""> <img
+                                class="img-fluid border rounded-circle"
+                                src="{% static 'images\make-logo\client9.jfif' %}" alt="Brands"> <span class="d-block">client1</span>
+                        </a></div>
+                        <div class="col-4 col-sm-3 col-md-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle"
+                                src="{% static 'images\make-logo\client2.png' %}" alt="Brands"><span class="d-block">client2</span></a>
+                        </div>
+                        <div class="col-4 col-sm-3 col-md-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle"
+                                src="{% static 'images\make-logo\client3.png' %}" alt="Brands"><span class="d-block">client3</span></a>
+                        </div>
+                        <div class="col-4 col-sm-3 col-md-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle"
+                                src="{% static 'images\make-logo\client4.png' %}" alt="Brands"><span class="d-block">client4</span></a>
+                        </div>
+                        <div class="col-4 col-sm-3 col-md-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle"
+                                src="{% static 'images\make-logo\client8.png' %}" alt="Brands"><span class="d-block">client5</span></a>
+                        </div>
+                        <div class="col-4 col-sm-3 col-md-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle"
+                                src="{% static 'images\make-logo\client6.png' %}" alt="Brands"><span class="d-block">client6</span></a>
+                        </div>
+                        <div class="col-4 col-sm-3 col-md-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle"
+                                src="{% static 'images\make-logo\client7.jfif' %}" alt="Brands"><span class="d-block">client7</span></a>
+                        </div>
+                        <div class="col-4 col-sm-3 col-md-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle"
+                                src="{% static 'images\make-logo\client8.png' %}" alt="Brands"><span class="d-block">client8</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="operator-two" role="tabpanel" aria-labelledby="operator-two-tab">
+                <div class="brands-grid">
+                    <div class="row">
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle"
+                                src="{% static 'images/brands/operator/operator.png' %}" alt="Brands"><span
+                                class="d-block">BSNL Landline - Corporate</span></a></div>
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle"
+                                src="{% static 'images/brands/operator/operator.png' %}" alt="Brands"><span
+                                class="d-block">Reliance Communications</span></a></div>
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle"
+                                src="{% static 'images/brands/operator/operator.png' %}" alt="Brands"><span
+                                class="d-block">Tata TeleServices</span></a></div>
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle"
+                                src="{% static 'images/brands/operator/operator.png' %}" alt="Brands"><span
+                                class="d-block">Tikona Digital Networks Private Limited</span></a></div>
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle"
+                                src="{% static 'images/brands/operator/operator.png' %}" alt="Brands"><span
+                                class="d-block">Airtel Landline</span></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="operator-three" role="tabpanel" aria-labelledby="operator-three-tab">
+                <div class="brands-grid">
+                    <div class="row">
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""> <img
+                                class="img-fluid border rounded-circle" src="images/brands/operator/operator.png"
+                                alt="Brands"> <span class="d-block">Torrent power</span> </a></div>
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle" src="images/brands/operator/operator.png"
+                                alt="Brands"><span class="d-block">APEPDCL - Eastern Power Ltd.</span></a></div>
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle" src="images/brands/operator/operator.png"
+                                alt="Brands"><span class="d-block">WESCO Utility</span></a></div>
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle" src="images/brands/operator/operator.png"
+                                alt="Brands"><span class="d-block">Tata Power - Delhi</span></a></div>
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle" src="images/brands/operator/operator.png"
+                                alt="Brands"><span class="d-block">DNH Power</span></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="operator-four" role="tabpanel" aria-labelledby="operator-four-tab">
+                <div class="brands-grid">
+                    <div class="row">
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""> <img
+                                class="img-fluid border rounded-circle" src="images/brands/operator/operator.png"
+                                alt="Brands"> <span class="d-block">Mumbai Metro</span> </a></div>
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle" src="images/brands/operator/operator.png"
+                                alt="Brands"><span class="d-block">Delhi Metro</span></a></div>
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle" src="images/brands/operator/operator.png"
+                                alt="Brands"><span class="d-block">Ahmedabad Metro</span></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="operator-five" role="tabpanel" aria-labelledby="operator-five-tab">
+                <div class="brands-grid">
+                    <div class="row">
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""> <img
+                                class="img-fluid border rounded-circle" src="images/brands/operator/operator.png"
+                                alt="Brands"> <span class="d-block">Adani Gas</span> </a></div>
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle" src="images/brands/operator/operator.png"
+                                alt="Brands"><span class="d-block">Tripura Natural Gas</span></a></div>
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle" src="images/brands/operator/operator.png"
+                                alt="Brands"><span class="d-block">Sabarmati Gas Limited (SGL)</span></a></div>
+                        <div class="col-4 col-sm-2 col-lg text-center"><a href=""><img
+                                class="img-fluid border rounded-circle" src="images/brands/operator/operator.png"
+                                alt="Brands"><span class="d-block">Indraprastha Gas Limited (IGL)</span></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Mobile App
+============================================= -->
+<!-- <section class="section shadow-md bg-light pb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 text-center"> <img class="img-fluid" alt="" src="images/app-mobile-2.png"> </div>
+      <div class="col-lg-6 text-center text-lg-left">
+        <h2 class="text-9 font-weight-500 my-4">Download Our Quickai<br class="d-none d-lg-inline-block">
+          Mobile App Now</h2>
+        <p class="lead">Download our app for the fastest, most convenient way to Recharge & Bill Payment, Booking and more....</p>
+        <div class="pt-3"> <a class="mr-4" href=""><img alt="" src="images/app-store.png"></a><a href=""><img alt="" src="images/google-play-store.png"></a> </div>
+      </div>
+    </div>
+  </div>
+</section> Mobile App end
+
+</div>-->
+<!-- Content end -->
+
+<!-- Footer
+============================================= -->
+
+<!-- Modal Dialog - Login/Signup end -->
+<section id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="eq5">
+                <h6>Company</h6>
+                <ul>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Our Blog</a></li>
+                    <li><a href="#">Press/Media</a></li>
+                    <li><a href="#">Career</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                    <li><a href="#">Site Map</a></li>
+                    <li><a href="#">Contact us</a></li>
+                </ul>
+            </div>
+            <div class="eq5">
+                <h6>Need help</h6>
+                <ul>
+                    <li><a href="#">How to Book</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cancellation &amp; Refund </a></li>
+                    <li><a href="#">Feedback / Complaints</a></li>
+                    <li><a href="#">E-papers</a></li>
+                    <li><a href="#">Track My Ad</a></li>
+                </ul>
+            </div>
+            <div class="clearfix hide-md"></div>
+            <div class="eq5">
+                <h6>Payment Method</h6>
+                <ul>
+                    <li><a href="#">Quick Payment Link</a></li>
+                    <li><a href="#">Payment Terms</a></li>
+                    <li><a href="#">Net banking</a></li>
+                    <li><a href="#">Debit/Credit Card</a></li>
+                    <li><a href="#">NEFT/RTGS</a></li>
+                    <li><a href="#">Bank Deposit/Cheque/DD</a></li>
+                    <br>
+
+                </ul>
+            </div>
+
+            <div class="eq5 ft_vid">
+                <h6>Video introduction</h6>
+                <iframe src="#" frameborder="0" allowfullscreen=""></iframe>
+                <ul>
+                    <li style="display:inline-block; vertical-align:top"><a href="https://www.facebook.com/bookmyad"
+                                                                            target="_blank"><img
+                            src="{% static 'images\make-logo\facebook.jpg' %}"></a></li>
+                    <li style="display:inline-block; vertical-align:top"><a
+                            href="https://plus.google.com/+BookmyadOfficial/posts" target="_blank"><img
+                            src="{% static 'images\make-logo\gmail.jpg' %}"></a></li>
+                    <li style="display:inline-block; vertical-align:top"><a href="https://twitter.com/bookmy_ad"
+                                                                            target="_blank"><img
+                            src="{% static 'images\make-logo\Twitter.jpg' %}"></a></li>
+                    <li style="display:inline-block; vertical-align:top"><a
+                            href="https://www.youtube.com/channel/UCHiRvwYVChyRb8isRQClejA" target="_blank"><img
+                            src="{% static 'images\make-logo\Youtube.jpg' %}"></a></li>
+                    <li style="display:inline-block; vertical-align:top"><a href="https://www.instagram.com/bookmyad/"
+                                                                            target="_blank"><img
+                            src="{% static 'images\make-logo\Instagram.jpg' %}"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+</footer>
+</section>
+<footer id="footer" class="mt-0">
+    <section class="hero-wrap bg-secondary shadow-md pt-4 pb-3">
+        <div class="hero-bg" style="background-image:url('./images/make-logo/image-5.jpg');"></div>
+        <div class="hero-content">
+            <div class="container">
+                <div class="row text-light">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="featured-box style-1">
+                            <div class="featured-box-icon text-light"><i class="fa fa-lock"></i></div>
+                            <h4 class="text-light">100% Secure</h4>
+                            <p>Moving your card details to a much more secured place.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="featured-box style-1">
+                            <div class="featured-box-icon text-light"><i class="fa fa-thumbs-up"></i></div>
+                            <h4 class="text-light">Trust pay</h4>
+                            <p>100% Payment Protection. Easy Return Policy.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="featured-box style-1">
+                            <div class="featured-box-icon text-light"><i class="fa fa-bullhorn"></i></div>
+                            <h4 class="text-light">Refer & Earn</h4>
+                            <p>Invite a friend to sign up and earn up to $100.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="featured-box style-1">
+                            <div class="featured-box-icon text-light"><i class="fa fa-life-ring"></i></div>
+                            <h4 class="text-light">24X7 Support</h4>
+                            <p>We're here to help. Have a query and need <a href="#">help</a> ?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
+
+<!-- Script -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-spinner/bootstrap-spinner.js' %}"></script>
+<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script>
+            $('.select2').select2();
+
+</script>
+<script src="{% static 'js/theme.js' %}"></script>
+
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+
+
+
+
+</script>
+<script>
+        function clearStorage() {
+            console.log('inside clear storage')
+            localStorage.clear();
+        };
+
+
+</script>
+
+<script type="text/javascript">
+      // This is the Feedback toggle functionality it slides the feedback form in and out
+    // of view when the user clicks the div with the class .feedback-toggle
+    $('.feedback-toggle').click( function(){
+        var   left = parseFloat($('.feedback')[0].style.left.match(/[0-9]+/g)) || 50,
+                tgl  = '+=280';
+        (left > 50)  ? tgl = '-=280' : tgl = '+=280';
+        $('.feedback').animate({ left: tgl}, 500);
+    });
+
+
+  // This is the form submission AJAX code which also
+    // hides the feednack form.
+
+    $("#feedback-form .btn").click(function() {
+        var url   = "path/to/your/script.php", // the script where you handle the form input.
+                data  = $("#feedback-form").serialize(),
+                isValid   = validate("#feedback-form");
+        if(isValid){
+            $.ajax({
+                type  : "POST",
+                url : url,
+                data  : data , // serializes the form's elements.
+                success : function(data){
+                    $('.feedback').find('.alert-error').fadeIn('fast');
+                    $('.feedback').animate({ left: '-=350'}, 500);
+                },
+                error : function(data){
+                    $('.feedback').find('.alert-block').fadeIn('fast');
+                    return false;
+                }
+            });
+        }
+        return false; // avoid to execute the actual submit of the form.
+    });
+
+
+
+
+
+
+
+
+</script>
+<script>
+  $(".id_city").change(function () {
+    var url = $("#personForm").attr("data-cities-url");
+    var cityId = $(this).val();
+    console.log("City ID List",localStorage.getItem("cityIdList"))
+    if(localStorage.getItem("cityIdList") == null){
+        var cityIdList = []
+        cityIdList.push(cityId)
+        console.log(" From if City ID List",cityIdList)
+        localStorage.setItem("cityIdList",JSON.stringify(cityIdList))
+    }
+    else{
+        var temp = JSON.parse(localStorage.getItem("cityIdList"))
+        console.log("Temp",temp)
+        if(!temp.includes(cityId)){
+            temp.push(cityId)
+        }
+        else{
+            const index = temp.indexOf(cityId);
+            temp.splice(index,1)
+        }
+        localStorage.setItem("cityIdList",JSON.stringify(temp))
+        console.log("Temp value",temp)
+        console.log("Type of Temp",typeof(temp))
+    }
+    console.log('City ID list -------->>>>>', cityIdList)
+    $.ajax({
+      url: url,
+      method:'POST',
+      data: {
+        'city': localStorage.getItem("cityIdList")
+      },
+      success: function (data) {
+        $("#id_publication").html(data);
+        console.log('City--------',data)
+      }
+    });
+});
+   $("#id_publication").change(function () {
+    var protocol = window.location.protocol
+    var hostname = window.location.hostname
+    var port = window.location.port
+    var url =  protocol + "//" + hostname + ":" + port + "/ajax/load_adtype" + "/";
+    var publicationId = $(this).val();
+
+
+    if(localStorage.getItem("publicationIdList") == null){
+        var publicationIdList = []
+        publicationIdList.push(publicationId)
+        console.log(" From if  ID List",publicationIdList)
+        localStorage.setItem("publicationIdList",JSON.stringify(publicationIdList))
+    }
+    else{
+        var temp = JSON.parse(localStorage.getItem("publicationIdList"))
+        console.log("Temp",temp)
+        if(!temp.includes(publicationId)){
+            temp.push(publicationId)
+        }
+        else{
+            const index = temp.indexOf(publicationId);
+            temp.splice(index,1)
+        }
+        localStorage.setItem("publicationIdList",JSON.stringify(temp))
+        console.log("Temp value",temp)
+        console.log("Type of Temp",typeof(temp))
+    }
+    console.log('Publication ID list -------->>>>>', publicationIdList)
+    console.log("Publcition retireve from local storage",localStorage.getItem("publicationIdList"))
+    $.ajax({
+      url: url,
+      method:'POST',
+      data: {
+        'publication': localStorage.getItem("publicationIdList"),
+      },
+      success: function (data) {
+      console.log('inside publicationId success')
+        $("#id_ad").html(data);
+        //console.log('data from publication ajax call---->>> ',data)
+      }
+    });
+  });
+
+</script>
+</body>
+</html>
