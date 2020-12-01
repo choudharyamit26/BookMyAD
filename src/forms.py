@@ -28,6 +28,7 @@ class AdForm(forms.ModelForm):
     #                                  label="Notify and subscribe users to this post:")
 
     # publication = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=Publication.objects.all())
+    category = forms.CharField(widget=forms.TextInput(attrs={'required': 'required'}))
 
     class Meta:
         model = AdType

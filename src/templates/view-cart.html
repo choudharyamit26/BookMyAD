@@ -1,0 +1,18 @@
+<div>
+
+    <h1>CART ITEMS</h1>
+    {% for item in items %}
+    {{forloop.counter}}
+    {{item.category.name}}
+    {{item.city.city_name}}
+    {{item.publication.publication_name}}
+    {{item.publication.publication_img.url}}
+    {{item.publication.ad.name}}
+    {{item.sample_ad_text}}
+    {{item.price}}
+    <a href="{% url 'src:compose-ad' item.id %}">Compose Ad</a>
+     <br>
+     <br>
+    {% endfor %}
+
+</div>

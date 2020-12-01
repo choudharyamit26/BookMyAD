@@ -15,21 +15,22 @@ class City(models.Model):
         return self.city_name
 
 
+class Ad(models.Model):
+    # publication = models.ForeignKey(Publication, on_delete=models.CASCADE)
+    name = models.CharField(default='', max_length=500)
+
+    def __str__(self):
+        return self.name
+
+
 class Publication(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE)
+    ad = models.ForeignKey(Ad, on_delete=models.CASCADE)
     publication_name = models.CharField(default='', max_length=1000)
     publication_img = models.ImageField()
 
     def __str__(self):
         return self.publication_name
-
-
-class Ad(models.Model):
-    publication = models.ForeignKey(Publication, on_delete=models.CASCADE)
-    name = models.CharField(default='', max_length=500)
-
-    def __str__(self):
-        return self.name
 
 
 class AdType(models.Model):
@@ -39,6 +40,14 @@ class AdType(models.Model):
     ad = models.ForeignKey(Ad, on_delete=models.CASCADE)
     sample_ad_text = models.CharField(default='sample ad text', max_length=2000)
     price = models.IntegerField()
+
+    def __str__(self):
+        return str(self.id)
+
+
+class SampleAds(models.Model):
+    ad_type = models.ForeignKey(AdType, on_delete=models.CASCADE)
+    ad_text = models.CharField(default='', max_length=1000)
 
     def __str__(self):
         return str(self.id)

@@ -3118,6 +3118,16 @@ legend { margin-bottom:15px;}
     margin: 10px 0;
 
 }
+.bt4{    font-size: 10.5px;
+    padding: 5px;
+    color: #ffff;
+
+    border: none;
+    height: 30px;
+    width: 100%;
+    margin: 10px 0;
+
+}
 #all-box{padding: 32px;margin-right: 208px;}
 .box1{background-color: #ffff; height: 50%;}
 .box1 h2{    margin-top: 20px;

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .sample1 {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0 10px 10px;
+            font-size: 13px;
+            font-weight: 300;
+            color: #000;
+            line-height: 18px;
+            text-align: justify;
+        }
+
+        .my_sample_ad {
+            min-height: 158px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Compose Ad</h1>
+    <h2>{{ad.id}}</h2>
+    <h2>{{ad.sample_ad_text}}</h2>
+    <h2>{{ad.price}}</h2>
+
+    <div class="container">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#sampleads" class=""
+                            aria-expanded="true">
+                            Sample ADs <span>(Pick from the sample ads)</span>
+                            <span class="glyphicon pull-right glyphicon-minus"></span>
+                        </a>
+                    </h4>
+                </div>
+                <div id="sampleads" class="panel-collapse collapse in" aria-expanded="true" style="">
+                    <div class="row">
+                        {% for obj in sample_ads_obj %}
+                        <div class="col-md-3">
+                            <div class="sample1 my_sample_ad">
+                                <h1>{{obj.ad_text}}</h1>
+                            </div>
+                            <button class="btn btn-default click_to_copy_ad">Copy AD</button>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="write-area">
+            <textarea class="form-control" cols="10" rows="10" name="ad_text" id="ad_text" placeholder="Write here..."
+                dir="ltr" style="line-height: 1.5em; font-family: Arial, Helvetica, sans-serif; font-size: 14px;"
+                oninput="myFunction()"></textarea>
+        </div>
+    </div>
+    
+    <div class="preview-cl">
+        <h4>ad preview<br><span style="text-size:10px;color:#E11B22;">(This is an indicative preview only)</span></h4>
+        <br>
+        <div id="ad_preview"
+            style="padding: 5px; overflow-wrap: break-word; text-align: justify; font-weight: normal; text-decoration: none; border:1px solid; color: rgb(0, 0, 0);">
+        </div>
+        <div style="padding:5px;">Chars Count: <span id="char_count">169</span></div>
+    </div>
+    <div class="write-ad">Select Ad Dates <span>(Please click on calendar icon to select dates)</span></div>
+    <input type="date">
+    <script>
+        $('button.click_to_copy_ad').on('click', function () {
+            var t = $(this).parent().find('div.my_sample_ad').text();
+            console.log(t)
+            $('#ad_text').html(t);
+            $('#ad_text').val(t);
+            myFunction()
+        })
+    </script>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("ad_text").value;
+            document.getElementById("ad_preview").innerHTML = x;
+        }
+    </script>
+</body>
+
+</html>

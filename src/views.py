@@ -8,7 +8,7 @@ from django.views.generic.edit import FormView
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.contrib import messages
-from .models import Category, City, Publication, AdType, Ad
+from .models import Category, City, Publication, AdType, Ad, SampleAds
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect, HttpResponse
 
@@ -35,80 +35,94 @@ class SearchAdView(View):
         form = AdForm()
         print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', self.request.POST)
         category = self.request.POST['category']
-        citylist = self.request.POST.getlist('city')[1::]
-        publicationList = self.request.POST.getlist('publication')
-        print('>>>>>>>>>>', publicationList)
-        ad = self.request.POST['ad']
-        category = Category.objects.get(id=category)
-        ad = Ad.objects.get(id=ad)
-        category_name = category.name
-        ad_name = ad.name
-        filtered_ads = []
-        categories = Category.objects.all().exclude(id=category.id)
-        total_cities = [x.id for x in City.objects.all()]
-        print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', total_cities)
-        print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> citylist ', citylist)
-        remaining_cities = []
-        remaining_publication = []
-
-        for x in total_cities:
-            print('ITERATING OVER TOTAL CITIES', x)
-            if str(x) not in citylist:
-                remaining_cities.append(int(x))
-
-        print('____________________________________________________________________', remaining_cities)
-        selected_cities = []
-        selected_publication = []
-        for publication in publicationList:
-            print('publication ---->>', publication)
-            publication = Publication.objects.get(id=publication)
-            selected_publication.append(publication)
-        print('Selected Publication ----------->>>', selected_publication)
-        for x in Publication.objects.all():
-            print('ITERATING OVER PUBLICATION LIST ', x)
-            pub_obj = Publication.objects.get(id=int(x.id))
-            if pub_obj not in selected_publication:
-                remaining_publication.append(pub_obj)
-        print('REMAINING PUBLICATION LIST ', remaining_publication)
-        # remaining_publication_obj = []
-        # for obj in remaining_publication:
-        #     remaining_publication_obj.append(obj)
-        # print('REMAINIG PUBLICATION OBJECT ',remaining_publication_obj)
-        selected_ad = ad
-        remaining_ad = Ad.objects.all().exclude(id=ad.id)
-        for city in citylist:
-            city = City.objects.get(id=city)
-            city_name = city.city_name
-            selected_cities.append(city)
-            for publication in publicationList:
-                publication = Publication.objects.get(id=publication)
-                publication_name = publication.publication_name
-                print('<<<<<<<<<<<<<<<Publication  ', publication)
-                print('>>>>>>>>>>>>>>>>City   ', city_name)
-                search = AdType.objects.filter(Q(category__name__icontains=category_name) &
-                                               Q(city__city_name__icontains=city_name) &
-                                               Q(publication__publication_name__icontains=publication_name) &
-                                               Q(ad__name__icontains=ad_name))
-                print('Search result--------------------', search)
-                if len(search) != 0:
-                    print("Ad name", search[0].sample_ad_text)
-                    filtered_ads.append(search[0])
-                    print('-----------------------', len(search))
-        remaining_cities_obj = []
-        for city in remaining_cities:
-            remaining_cities_obj.append(City.objects.get(id=city))
-        result = len(filtered_ads)
-        if result > 0:
-            return render(self.request, 'search.html',
-                          {"search": filtered_ads, 'citylist': citylist, 'publicationList': remaining_publication,
-                           'category': category, 'ad': ad, 'categories': categories,
-                           'selected_cities': selected_cities, 'total_cities': remaining_cities_obj,
-                           'selected_publication': selected_publication, 'selected_ad': selected_ad,
-                           'remaining_ad': remaining_ad})
-        else:
-            messages.error(self.request, 'No result found')
-            return render(self.request, 'index.html', {"form": form})
+        if category == '-Select Category-':
+            ad_form = AdForm()
+            # ad_form.fields['city'].choices = [(x.id, x) for x in City.objects.all()]
+            cities = City.objects.all()
+            categories = Category.objects.all()
+            messages.info(self.request, 'Please select a category')
             # return HttpResponseRedirect(self.request.path_info)
+            return render(self.request, 'index.html', {'form': ad_form, 'cities': cities, 'categories': categories})
+        else:
+            citylist = self.request.POST.getlist('city')[1::]
+            publicationList = self.request.POST.getlist('publication')
+            print('>>>>>>>>>>', publicationList)
+            ad = self.request.POST['ad']
+            category = Category.objects.get(id=category)
+            ad = Ad.objects.get(id=ad)
+            category_name = category.name
+            ad_name = ad.name
+            filtered_ads = []
+            categories = Category.objects.all().exclude(id=category.id)
+            total_cities = [x.id for x in City.objects.all()]
+            print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', total_cities)
+            print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> citylist ', citylist)
+            remaining_cities = []
+            remaining_publication = []
+
+            for x in total_cities:
+                print('ITERATING OVER TOTAL CITIES', x)
+                if str(x) not in citylist:
+                    remaining_cities.append(int(x))
+
+            print('____________________________________________________________________', remaining_cities)
+            selected_cities = []
+            selected_publication = []
+            for publication in publicationList:
+                print('publication ---->>', publication)
+                publication = Publication.objects.get(id=publication)
+                selected_publication.append(publication)
+            print('Selected Publication ----------->>>', selected_publication)
+            for x in Publication.objects.all():
+                print('ITERATING OVER PUBLICATION LIST ', x)
+                pub_obj = Publication.objects.get(id=int(x.id))
+                if pub_obj not in selected_publication:
+                    remaining_publication.append(pub_obj)
+            print('REMAINING PUBLICATION LIST ', remaining_publication)
+            # remaining_publication_obj = []
+            # for obj in remaining_publication:
+            #     remaining_publication_obj.append(obj)
+            # print('REMAINIG PUBLICATION OBJECT ',remaining_publication_obj)
+            selected_ad = ad
+            remaining_ad = Ad.objects.all().exclude(id=ad.id)
+            for city in citylist:
+                city = City.objects.get(id=city)
+                city_name = city.city_name
+                selected_cities.append(city)
+                for publication in publicationList:
+                    publication = Publication.objects.get(id=publication)
+                    publication_name = publication.publication_name
+                    print('<<<<<<<<<<<<<<<Publication  ', publication)
+                    print('>>>>>>>>>>>>>>>>City   ', city_name)
+                    search = AdType.objects.filter(Q(category__name__icontains=category_name) &
+                                                   Q(city__city_name__icontains=city_name) &
+                                                   Q(publication__publication_name__icontains=publication_name) &
+                                                   Q(ad__name__icontains=ad_name))
+                    print('Search result--------------------', search)
+                    if len(search) != 0:
+                        print("Ad name", search[0].sample_ad_text)
+                        filtered_ads.append(search[0])
+                        print('-----------------------', len(search))
+            remaining_cities_obj = []
+            for city in remaining_cities:
+                remaining_cities_obj.append(City.objects.get(id=city))
+            result = len(filtered_ads)
+            if result > 0:
+                return render(self.request, 'search.html',
+                              {"search": filtered_ads, 'citylist': citylist, 'publicationList': remaining_publication,
+                               'category': category, 'ad': ad, 'categories': categories,
+                               'selected_cities': selected_cities, 'total_cities': remaining_cities_obj,
+                               'selected_publication': selected_publication, 'selected_ad': selected_ad,
+                               'remaining_ad': remaining_ad})
+            else:
+                messages.error(self.request, 'No result found')
+                ad_form = AdForm()
+                # ad_form.fields['city'].choices = [(x.id, x) for x in City.objects.all()]
+                cities = City.objects.all()
+                categories = Category.objects.all()
+                # return HttpResponseRedirect(self.request.path_info)
+                return render(self.request, 'index.html', {'form': ad_form, 'cities': cities, 'categories': categories})
+                # return HttpResponseRedirect(self.request.path_info)
 
 
 #
@@ -149,17 +163,18 @@ def load_publications(request):
 def load_adtype(request):
     ad_list = []
     if request.method == 'POST':
-        publication_id = json.loads(request.POST['publication'])
-        print('---------- load ad  ', publication_id)
-        pub = publication_id.pop()
-        print('popped value   ', pub)
-        for publication in pub:
-            ad_type = Ad.objects.filter(publication=int(publication)).order_by('name').distinct()
-            if (len(ad_type) != 0):
-                if ad_type[0].name not in ad_list:
-                    print('___________ AD NAME______', ad_type[0].name)
-                    ad_list.append(ad_type[0].name)
-    print(ad_list)
+        # publication_id = json.loads(request.POST['publication'])
+        # print('---------- load ad  ', publication_id)
+        # pub = publication_id.pop()
+        # print('popped value   ', pub)
+        # for publication in pub:
+        #     ad_type = Ad.objects.filter(publication=int(publication)).order_by('name').distinct()
+        #     if (len(ad_type) != 0):
+        #         if ad_type[0].name not in ad_list:
+        #             print('___________ AD NAME______', ad_type[0].name)
+        #             ad_list.append(ad_type[0].name)
+        ad_list = [x for x in Ad.objects.all()]
+        print(ad_list)
     return render(request, 'ad_type.html', {'ad_type': list(set(ad_list))})
 
 
@@ -182,3 +197,49 @@ class AddToCart(View):
         # print('<<<<<<< Count', x.count())
         # ad_obj = AdType.objects.filter()
         return HttpResponse()
+
+
+class ViewCart(View):
+    model = AdType
+    template_name = 'view-cart.html'
+
+    def get(self, request, *args, **kwargs):
+        print('------------------------------------------', self.request.GET)
+        print(self.request.GET['cartItem'])
+        item_list = self.request.GET['cartItem']
+        # print(item_list)
+        # print(type(item_list))
+        ads = []
+        for item in json.loads(item_list):
+            ads.append(AdType.objects.get(id=item))
+        print(ads)
+        context = {
+            'items': ads
+        }
+        return render(self.request, 'view-cart.html', context)
+        # return redirect(self.request.path_info)
+
+
+class ComposeAd(View):
+    model = Ad
+    template = 'compose-ad.html'
+
+    def get(self, request, *args, **kwargs):
+        print(kwargs['pk'])
+        # print(args)
+        # print(self.request.data)
+        ad_obj = AdType.objects.get(id=kwargs['pk'])
+        sample_ad_obj = SampleAds.objects.filter(ad_type=kwargs['pk'])
+        print('', sample_ad_obj)
+        sample_ads = [x.ad_text for x in sample_ad_obj]
+        print(sample_ads)
+        context = {
+            'ad': ad_obj,
+            'sample_ads_obj': sample_ad_obj,
+            'sample_ads': sample_ads,
+        }
+        return render(self.request, 'compose-ad.html', context)
+
+    def post(self, request, *args, **kwargs):
+        print(self.request.POST)
+        return redirect(self.request.path_info)
